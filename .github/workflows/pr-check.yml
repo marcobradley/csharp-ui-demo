@@ -21,10 +21,10 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Restore
-        run: dotnet restore csharp-ui-demo.sln
+        run: dotnet restore csharp-ui.sln
 
       - name: Build
-        run: dotnet build csharp-ui-demo.sln --configuration Release --no-restore
+        run: dotnet build csharp-ui.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test csharp-ui-demo.sln --configuration Release --no-build
+        run: dotnet test csharp-ui.sln --configuration Release --no-build
