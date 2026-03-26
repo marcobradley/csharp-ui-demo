@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="container mt-5">
+    <h2>Best Time to Buy or Sell Stock</h2>
+    <form id="stockForm" class="mb-3">
+        <div class="mb-3">
+            <label for="pricesInput" class="form-label">Enter prices (comma-separated):</label>
+            <input type="text" class="form-control" id="pricesInput" placeholder="e.g. 7,1,5,3,6,4" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+    <div id="result" class="alert alert-info d-none"></div>
+</div>
+
+<script>
+    document.getElementById('stockForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const pricesStr = document.getElementById('pricesInput').value;
+        const prices = pricesStr.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+        const resultDiv = document.getElementById('result');
+        resultDiv.classList.add('d-none');
+        resultDiv.textContent = '';
+
+        if (prices.length === 0) {
+            resultDiv.textContent = 'Please enter at least one valid price.';
+            resultDiv.classList.remove('d-none');
+            return;
+        }
+
+        try {
+            // Change the URL below to your actual API endpoint if needed
+            const apiBaseUrl = '@Model.ApiBaseUrl';
+            const response = await fetch(`${apiBaseUrl}/besttimetobyorsellstock`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prices })
+            });
+            if (!response.ok) {
+                throw new Error('API error: ' + response.status);
+            }
+            const data = await response.json();
+            resultDiv.textContent = 'Best profit: ' + data;
+            resultDiv.classList.remove('d-none');
+        } catch (err) {
+            resultDiv.textContent = 'Error: ' + err.message;
+            resultDiv.classList.remove('d-none');
+        }
+    });
+</script>
