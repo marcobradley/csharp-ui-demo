@@ -54,14 +54,14 @@ jobs:
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker/build-push-action@v6
         with:
-          context: ./csharp-api
-          file: ./csharp-api/Dockerfile
+          context: ./csharp-ui
+          file: ./csharp-ui/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-api-demo:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-api-demo:v${{ steps.semantic.outputs.new_release_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-api-demo:v${{ steps.docker_tags.outputs.major }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-api-demo:v${{ steps.docker_tags.outputs.major }}.${{ steps.docker_tags.outputs.minor }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-ui-demo:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-ui-demo:v${{ steps.semantic.outputs.new_release_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-ui-demo:v${{ steps.docker_tags.outputs.major }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/csharp-ui-demo:v${{ steps.docker_tags.outputs.major }}.${{ steps.docker_tags.outputs.minor }}
 
   changelog-pr:
     needs: release
