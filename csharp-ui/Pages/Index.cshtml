@@ -51,7 +51,7 @@
                     'Content-Type': 'application/json',
                     'RequestVerificationToken': token
                 },
-                body: JSON.stringify({ Prices: pricesArr })
+                body: JSON.stringify({ prices: pricesArr })
             });
             
             if (!response.ok) {
