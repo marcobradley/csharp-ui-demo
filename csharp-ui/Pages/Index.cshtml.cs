@@ -25,8 +25,13 @@ public class IndexModel : PageModel
         ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
-    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] PriceRequest data)
+    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync()
     {
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        var data = System.Text.Json.JsonSerializer.Deserialize<PriceRequest>(body);
+        if (data == null)
+            return BadRequest("Invalid request body");
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
         var response = await _httpClient.PostAsJsonAsync(apiUrl, data);
         var result = await response.Content.ReadAsStringAsync();
