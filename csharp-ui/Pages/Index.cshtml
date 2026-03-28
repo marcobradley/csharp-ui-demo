@@ -28,12 +28,11 @@
     document.getElementById('stockForm').addEventListener('submit', async function (e) {
         e.preventDefault();
         const pricesStr = document.getElementById('pricesInput').value;
-        const prices = pricesStr.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
         const resultDiv = document.getElementById('result');
         resultDiv.classList.add('d-none');
         resultDiv.textContent = '';
 
-        if (prices.length === 0) {
+        if (!pricesStr.trim()) {
             resultDiv.textContent = 'Please enter at least one valid price.';
             resultDiv.classList.remove('d-none');
             return;
@@ -51,7 +50,7 @@
                     'Content-Type': 'application/json',
                     'RequestVerificationToken': token
                 },
-                body: JSON.stringify({ prices })
+                body: JSON.stringify({ prices: pricesStr })
             });
             
             if (!response.ok) {
