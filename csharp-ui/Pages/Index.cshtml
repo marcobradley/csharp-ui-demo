@@ -39,7 +39,7 @@
         try {
             // Change the URL below to your actual API endpoint if needed
             const apiBaseUrl = '@Model.ApiBaseUrl';
-            const response = await fetch(`${apiBaseUrl}/besttimetobyorsellstock`, {
+            const response = await fetch(`?handler=BestTimeToBuyOrSellStock`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
