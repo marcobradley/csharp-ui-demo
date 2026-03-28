@@ -39,13 +39,18 @@
         try {
             // Change the URL below to your actual API endpoint if needed
             const apiBaseUrl = '@Model.ApiBaseUrl';
-            const response = await fetch(`?handler=BestTimeToBuyOrSellStock`, {
+            const url = `?handler=BestTimeToBuyOrSellStock`;
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
                 },
                 body: JSON.stringify({ prices })
             });
+            
             if (!response.ok) {
                 throw new Error('API error: ' + response.status);
             }
