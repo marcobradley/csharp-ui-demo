@@ -36,5 +36,5 @@ public class IndexModel : PageModel
 
 public class InputModel
 {
-    public string Prices { get; set; }
+    public required int[] Prices { get; set; }
 }
