@@ -25,10 +25,10 @@ public class IndexModel : PageModel
         ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
-    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel input)
+    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel prices)
     {
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
-        var response = await _httpClient.PostAsJsonAsync(apiUrl, input.Prices);
+        var response = await _httpClient.PostAsJsonAsync(apiUrl, prices.Prices);
         var result = await response.Content.ReadAsStringAsync();
         return Content(result, "application/json");
     }
