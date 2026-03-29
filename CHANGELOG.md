@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.9...v0.0.0-development) (2026-03-29)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.10...v0.0.0-development) (2026-03-29)
 
 ### ⚠ BREAKING CHANGES
 
@@ -32,6 +32,7 @@
 * debugging removing anti-forgery token ([f70740f](https://github.com/marcobradley/csharp-ui-demo/commit/f70740f125660394878d6ad2d19e889e88ed26ac))
 * fixed the type to an array ([5cb8bd2](https://github.com/marcobradley/csharp-ui-demo/commit/5cb8bd273850a159b1d4660744b2598bc308d1f7))
 * removed token ([7d76360](https://github.com/marcobradley/csharp-ui-demo/commit/7d763602c76bd49143b2a78c92bfabff48c3c323))
+* removing required from the InpitModel to validate it can hit the backend ([ee41975](https://github.com/marcobradley/csharp-ui-demo/commit/ee4197583f62c47c9a3ea5e0145ce0eda96b154e))
 * revert changes ([1a77d7c](https://github.com/marcobradley/csharp-ui-demo/commit/1a77d7c244f714045226404fece955ae2c04e102))
 * update ([5e29781](https://github.com/marcobradley/csharp-ui-demo/commit/5e29781f58c02373b4bff902ace04233ac7c8820))
 * update model being passed to the handler ([b56e271](https://github.com/marcobradley/csharp-ui-demo/commit/b56e27177243f9f0ad741cc9d823a5fc97be50e2))
