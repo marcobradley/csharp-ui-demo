@@ -30,6 +30,14 @@ public class IndexModel : PageModel
         var result = await response.Content.ReadAsStringAsync();
         return Content(result, "application/json");
     }
+
+    public async Task<IActionResult> OnGetWeatherForecastAsync()
+    {
+        var apiUrl = $"{ApiConfig.ApiBaseUrl}/weatherforecast";
+        var response = await _httpClient.GetAsync(apiUrl);
+        var result = await response.Content.ReadAsStringAsync();
+        return Content(result, "application/json");
+    }
 }
 
 public class InputModel
