@@ -25,9 +25,12 @@ public class IndexModel : PageModel
 
     public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel request)
     {
+        _logger.LogInformation("Received POST for BestTimeToBuyOrSellStock: {@Request}", request);
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
+        _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Prices);
         var response = await _httpClient.PostAsJsonAsync(apiUrl, request.Prices);
         var result = await response.Content.ReadAsStringAsync();
+        _logger.LogInformation("API response status: {StatusCode}, body: {Body}", response.StatusCode, result);
         return Content(result, "application/json");
     }
 
