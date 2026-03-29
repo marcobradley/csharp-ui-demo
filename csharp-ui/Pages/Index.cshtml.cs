@@ -24,12 +24,19 @@ public class IndexModel : PageModel
     }
 
     [IgnoreAntiforgeryToken]
-    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel request)
+    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync()
     {
-        _logger.LogInformation("Received POST for BestTimeToBuyOrSellStock: {@Request}", request);
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        _logger.LogInformation("Raw request body: {Body}", body);
+
+        var request = System.Text.Json.JsonSerializer.Deserialize<InputModel>(body);
+        if (request == null || request.Prices == null || request.Prices.Length < 2)
+            return BadRequest("Invalid or missing Prices array.");
+
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
         _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Prices);
-        var response = await _httpClient.PostAsJsonAsync(apiUrl, request.Prices);
+        var response = await _httpClient.PostAsJsonAsync(apiUrl, request);
         var result = await response.Content.ReadAsStringAsync();
         _logger.LogInformation("API response status: {StatusCode}, body: {Body}", response.StatusCode, result);
         return Content(result, "application/json");
