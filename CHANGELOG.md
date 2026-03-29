@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.7...v0.0.0-development) (2026-03-29)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.8...v0.0.0-development) (2026-03-29)
 
 ### ⚠ BREAKING CHANGES
 
@@ -28,6 +28,7 @@
 * corrected InputModel type ([ca42b04](https://github.com/marcobradley/csharp-ui-demo/commit/ca42b0420c6a7c54c267f040825f2316591a5ef1))
 * corrected json case for Prices ([9516212](https://github.com/marcobradley/csharp-ui-demo/commit/9516212eb98f2a8e9a93cf0833ed824d8792e511))
 * correcting post ([669dfa4](https://github.com/marcobradley/csharp-ui-demo/commit/669dfa4021c60e050a63b2417cafad88bf0215ca))
+* debugging removing anti-forgery token ([f70740f](https://github.com/marcobradley/csharp-ui-demo/commit/f70740f125660394878d6ad2d19e889e88ed26ac))
 * fixed the type to an array ([5cb8bd2](https://github.com/marcobradley/csharp-ui-demo/commit/5cb8bd273850a159b1d4660744b2598bc308d1f7))
 * removed token ([7d76360](https://github.com/marcobradley/csharp-ui-demo/commit/7d763602c76bd49143b2a78c92bfabff48c3c323))
 * revert changes ([1a77d7c](https://github.com/marcobradley/csharp-ui-demo/commit/1a77d7c244f714045226404fece955ae2c04e102))
