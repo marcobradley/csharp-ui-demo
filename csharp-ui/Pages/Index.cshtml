@@ -51,11 +51,14 @@
         e.preventDefault();
         const pricesStr = document.getElementById('pricesInput').value;
         const pricesArr = pricesStr.split(',').map(x => parseInt(x.trim(), 10)).filter(x => !isNaN(x));
+        console.log('Stock form submitted. Raw input:', pricesStr);
+        console.log('Parsed prices array:', pricesArr);
         const resultDiv = document.getElementById('result');
         resultDiv.classList.add('d-none');
         resultDiv.textContent = '';
 
         if (!pricesArr.length) {
+            console.warn('No valid prices entered.');
             resultDiv.textContent = 'Please enter at least one valid price.';
             resultDiv.classList.remove('d-none');
             return;
@@ -63,22 +66,26 @@
 
         try {
             const url = `?handler=BestTimeToBuyOrSellStock`;
-            
+            const payload = { Prices: pricesArr };
+            console.log('Sending POST to handler:', url, 'with payload:', payload);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ Prices: pricesArr })
+                body: JSON.stringify(payload)
             });
-            
+            console.log('Received response:', response);
             if (!response.ok) {
+                console.error('API error:', response.status);
                 throw new Error('API error: ' + response.status);
             }
             const data = await response.json();
+            console.log('Parsed response data:', data);
             resultDiv.textContent = 'Best profit: ' + data;
             resultDiv.classList.remove('d-none');
         } catch (err) {
+            console.error('Error in stockForm submit:', err);
             resultDiv.textContent = 'Error: ' + err.message;
             resultDiv.classList.remove('d-none');
         }
