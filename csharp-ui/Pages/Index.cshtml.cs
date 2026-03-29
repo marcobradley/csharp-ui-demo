@@ -28,11 +28,34 @@ public class IndexModel : PageModel
     {
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
-        _logger.LogInformation("Raw request body: {Body}", body);
+        _logger.LogInformation("Handler raw request body: {Body}", body);
 
-        var request = System.Text.Json.JsonSerializer.Deserialize<InputModel>(body);
-        if (request == null || request.Prices == null || request.Prices.Length < 2)
-            return BadRequest("Invalid or missing Prices array.");
+        InputModel? request = null;
+        try
+        {
+            request = System.Text.Json.JsonSerializer.Deserialize<InputModel>(body);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Deserialization failed");
+            return BadRequest("Deserialization failed: " + ex.Message);
+        }
+
+        if (request == null)
+        {
+            _logger.LogWarning("Deserialized request is null");
+            return BadRequest("Deserialized request is null");
+        }
+        if (request.Prices == null)
+        {
+            _logger.LogWarning("Prices property is null");
+            return BadRequest("Prices property is null");
+        }
+        if (request.Prices.Length < 2)
+        {
+            _logger.LogWarning("Prices array has less than 2 elements");
+            return BadRequest("Please provide at least two stock prices.");
+        }
 
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
         _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Prices);
