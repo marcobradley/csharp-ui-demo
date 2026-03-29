@@ -23,6 +23,7 @@ public class IndexModel : PageModel
         ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
+    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel request)
     {
         _logger.LogInformation("Received POST for BestTimeToBuyOrSellStock: {@Request}", request);
