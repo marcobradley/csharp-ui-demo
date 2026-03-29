@@ -20,11 +20,31 @@
             <input type="text" class="form-control" id="pricesInput" placeholder="e.g. 7,1,5,3,6,4" required />
         </div>
         <button type="submit" class="btn btn-primary">Calculate</button>
+        <button type="button" id="weatherBtn" class="btn btn-secondary ms-2">Get Weather Forecast</button>
     </form>
     <div id="result" class="alert alert-info d-none"></div>
+    <div id="weatherResult" class="alert alert-info d-none mt-3"></div>
 </div>
 
 <script>
+    document.getElementById('weatherBtn').addEventListener('click', async function () {
+        const weatherDiv = document.getElementById('weatherResult');
+        weatherDiv.classList.add('d-none');
+        weatherDiv.textContent = '';
+        try {
+            const apiBaseUrl = '@Model.ApiBaseUrl';
+            const response = await fetch(apiBaseUrl + '/weatherforecast');
+            if (!response.ok) {
+                throw new Error('API error: ' + response.status);
+            }
+            const data = await response.json();
+            weatherDiv.textContent = JSON.stringify(data, null, 2);
+            weatherDiv.classList.remove('d-none');
+        } catch (err) {
+            weatherDiv.textContent = 'Error: ' + err.message;
+            weatherDiv.classList.remove('d-none');
+        }
+    });
     document.getElementById('stockForm').addEventListener('submit', async function (e) {
         e.preventDefault();
         const pricesStr = document.getElementById('pricesInput').value;
@@ -49,7 +69,6 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'RequestVerificationToken': token
                 },
                 body: JSON.stringify({ Prices: pricesArr })
             });
