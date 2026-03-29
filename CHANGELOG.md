@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.13...v0.0.0-development) (2026-03-29)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.14...v0.0.0-development) (2026-03-29)
 
 ### ⚠ BREAKING CHANGES
 
@@ -20,6 +20,7 @@
 ### Bug Fixes
 
 * adding catch all ([70e36c7](https://github.com/marcobradley/csharp-ui-demo/commit/70e36c737d1e559af4a32364f599c758ebe6cc4f))
+* adding debuggin to the post method ([d532a36](https://github.com/marcobradley/csharp-ui-demo/commit/d532a36ccbe21161a689223515f1e3e5c8f04afa))
 * adding debugging logs ([6177434](https://github.com/marcobradley/csharp-ui-demo/commit/6177434b2b5195b0744778de0501f31e36e05eb9))
 * adding debugging to the catch-all ([0b7eb40](https://github.com/marcobradley/csharp-ui-demo/commit/0b7eb40365b3bc1198cd79918a1a6745e1a249e6))
 * cases ([a1e1fa7](https://github.com/marcobradley/csharp-ui-demo/commit/a1e1fa7f17e615f74b0ed97b4fefbc70aa9c2088))
