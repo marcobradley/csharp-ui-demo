@@ -25,10 +25,10 @@ public class IndexModel : PageModel
         ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
-    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel prices)
+    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync([FromBody] InputModel request)
     {
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
-        var response = await _httpClient.PostAsJsonAsync(apiUrl, prices.prices);
+        var response = await _httpClient.PostAsJsonAsync(apiUrl, request.Prices);
         var result = await response.Content.ReadAsStringAsync();
         return Content(result, "application/json");
     }
@@ -36,5 +36,5 @@ public class IndexModel : PageModel
 
 public class InputModel
 {
-    public required int[] prices { get; set; }
+    public required int[] Prices { get; set; }
 }
