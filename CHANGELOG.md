@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.6...v0.0.0-development) (2026-03-29)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.7...v0.0.0-development) (2026-03-29)
 
 ### ⚠ BREAKING CHANGES
 
@@ -31,6 +31,7 @@
 * fixed the type to an array ([5cb8bd2](https://github.com/marcobradley/csharp-ui-demo/commit/5cb8bd273850a159b1d4660744b2598bc308d1f7))
 * removed token ([7d76360](https://github.com/marcobradley/csharp-ui-demo/commit/7d763602c76bd49143b2a78c92bfabff48c3c323))
 * revert changes ([1a77d7c](https://github.com/marcobradley/csharp-ui-demo/commit/1a77d7c244f714045226404fece955ae2c04e102))
+* update ([5e29781](https://github.com/marcobradley/csharp-ui-demo/commit/5e29781f58c02373b4bff902ace04233ac7c8820))
 * update model being passed to the handler ([b56e271](https://github.com/marcobradley/csharp-ui-demo/commit/b56e27177243f9f0ad741cc9d823a5fc97be50e2))
 * updated InputModel ([a90dc17](https://github.com/marcobradley/csharp-ui-demo/commit/a90dc17cd4ee528e58ca190c929ae4935e322fae))
 * updated post and added more logging ([adcb1f5](https://github.com/marcobradley/csharp-ui-demo/commit/adcb1f58a17780f3fa45096617d8bab375fc47d5))
