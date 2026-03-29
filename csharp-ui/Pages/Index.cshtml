@@ -66,11 +66,12 @@
 
         try {
             const url = `?handler=BestTimeToBuyOrSellStock`;
-            var payload = new { Prices = pricesArr };
+            let payload = { Prices: pricesArr };
             console.log('Sending POST to handler:', url, 'with payload:', payload);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload)
