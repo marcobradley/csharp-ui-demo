@@ -6,6 +6,14 @@ builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
+// Catch-all logging middleware for debugging
+app.Use(async (context, next) =>
+{
+    var logger = context.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("CatchAll");
+    logger.LogInformation("Catch-all: {Method} {Path}{QueryString}", context.Request.Method, context.Request.Path, context.Request.QueryString);
+    await next();
+});
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
