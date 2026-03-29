@@ -12,6 +12,9 @@ public class IndexModel : PageModel
     private readonly HttpClient _httpClient;
     public string ApiBaseUrl { get; set; }
 
+    [BindProperty]
+    public InputModel Input { get; set; }
+
     public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
@@ -24,7 +27,7 @@ public class IndexModel : PageModel
     }
 
     [IgnoreAntiforgeryToken]
-    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync()
+    public async Task<IActionResult> OnPostBestTimeToBuyOrSellStock()
     {
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
