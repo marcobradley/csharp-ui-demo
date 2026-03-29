@@ -11,6 +11,15 @@ app.Use(async (context, next) =>
 {
     var logger = context.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("CatchAll");
     logger.LogInformation("Catch-all: {Method} {Path}{QueryString}", context.Request.Method, context.Request.Path, context.Request.QueryString);
+    if (context.Request.ContentLength > 0 &&
+        (context.Request.Method == "POST" || context.Request.Method == "PUT"))
+    {
+        context.Request.EnableBuffering();
+        using var reader = new StreamReader(context.Request.Body, leaveOpen: true);
+        var body = await reader.ReadToEndAsync();
+        context.Request.Body.Position = 0;
+        logger.LogInformation("Catch-all request body: {Body}", body);
+    }
     await next();
 });
 
