@@ -5,8 +5,6 @@ namespace csharp_ui.Pages;
 
 using csharp_ui.Helpers;
 
-public record PriceRequest(decimal[] prices);
-
 public class IndexModel : PageModel
 {
 
