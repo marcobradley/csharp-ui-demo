@@ -32,8 +32,13 @@
         weatherDiv.classList.add('d-none');
         weatherDiv.textContent = '';
         try {
-            const apiBaseUrl = '@Model.ApiBaseUrl';
-            const response = await fetch(apiBaseUrl + '/weatherforecast');
+            const url = `?handler=WeatherForecast`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             if (!response.ok) {
                 throw new Error('API error: ' + response.status);
             }
@@ -60,15 +65,13 @@
         }
 
         try {
-            // Change the URL below to your actual API endpoint if needed
-            const apiBaseUrl = '@Model.ApiBaseUrl';
             const url = `?handler=BestTimeToBuyOrSellStock`;
             const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
             
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ Prices: pricesArr })
             });
