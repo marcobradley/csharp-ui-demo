@@ -10,17 +10,11 @@ public class IndexModel : PageModel
 
     private readonly ILogger<IndexModel> _logger;
     private readonly HttpClient _httpClient;
-    public string ApiBaseUrl { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
         _httpClient = httpClientFactory.CreateClient();
-    }
-
-    public void OnGet()
-    {
-        ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
     public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync()
@@ -57,7 +51,7 @@ public class IndexModel : PageModel
             return BadRequest("Please provide at least two stock prices.");
         }
 
-        var apiUrl = $"{ApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
+        var apiUrl = $"{CSharpApiConfig.ApiBaseUrl}/besttimetobyorsellstock";
         _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Prices);
         var response = await _httpClient.PostAsJsonAsync(apiUrl, request);
         var result = await response.Content.ReadAsStringAsync();
@@ -99,7 +93,7 @@ public class IndexModel : PageModel
             return BadRequest("Please provide at least two numbers.");
         }
 
-        var apiUrl = $"{ApiConfig.ApiBaseUrl}/quicksort";
+        var apiUrl = $"{GoApiConfig.ApiBaseUrl}/quicksort";
         _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Numbers);
         var response = await _httpClient.PostAsJsonAsync(apiUrl, request);
         var result = await response.Content.ReadAsStringAsync();
@@ -109,7 +103,7 @@ public class IndexModel : PageModel
 
     public async Task<IActionResult> OnGetWeatherForecastAsync()
     {
-        var apiUrl = $"{ApiConfig.ApiBaseUrl}/weatherforecast";
+        var apiUrl = $"{CSharpApiConfig.ApiBaseUrl}/weatherforecast";
         var response = await _httpClient.GetAsync(apiUrl);
         var result = await response.Content.ReadAsStringAsync();
         return Content(result, "application/json");
