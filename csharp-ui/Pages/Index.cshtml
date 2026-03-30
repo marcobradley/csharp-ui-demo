@@ -24,10 +24,10 @@
 </div>
 <div class="container mt-5">
     <h2>Quick Sort</h2>
-    <form method="post" id="quickSortForm" class="mb-3" asp-page-handler="QuickSort">
+    <form id="quickSortForm" class="mb-3">
         <div class="mb-3">
-            <label asp-for="SortInput.Numbers" class="form-label">Enter numbers (comma-separated):</label>
-            <input asp-for="SortInput.Numbers" type="text" class="form-control" id="numbersInput" placeholder="e.g. 7,1,5,3,6,4" required />
+            <label for="numbersInput" class="form-label">Enter numbers (comma-separated):</label>
+            <input type="text" class="form-control" id="numbersInput" placeholder="e.g. 7,1,5,3,6,4" required />
         </div>
         <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
@@ -56,6 +56,50 @@
         } catch (err) {
             weatherDiv.textContent = 'Error: ' + err.message;
             weatherDiv.classList.remove('d-none');
+        }
+    });
+    document.getElementById('quickSortForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const numbersStr = document.getElementById('numbersInput').value;
+        const numbersArr = numbersStr.split(',').map(x => parseInt(x.trim(), 10)).filter(x => !isNaN(x));
+        console.log('Quick Sort form submitted. Raw input:', numbersStr);
+        console.log('Parsed numbers array:', numbersArr);
+        const resultDiv = document.getElementById('quickSortResult');
+        resultDiv.classList.add('d-none');
+        resultDiv.textContent = '';
+
+        if (!numbersArr.length) {
+            console.warn('No valid numbers entered.');
+            resultDiv.textContent = 'Please enter at least one valid number.';
+            resultDiv.classList.remove('d-none');
+            return;
+        }
+
+        try {
+            const url = `?handler=QuickSort`;
+            let payload = { "Prices": numbersArr };
+            console.log('Sending POST to handler:', url, 'with payload:', payload);
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+            console.log('Received response:', response);
+            if (!response.ok) {
+                console.error('API error:', response.status);
+                throw new Error('API error: ' + response.status);
+            }
+            const data = await response.json();
+            console.log('Parsed response data:', data);
+            resultDiv.textContent = 'Sorted numbers: ' + data;
+            resultDiv.classList.remove('d-none');
+        } catch (err) {
+            console.error('Error in quickSortForm submit:', err);
+            resultDiv.textContent = 'Error: ' + err.message;
+            resultDiv.classList.remove('d-none');
         }
     });
     document.getElementById('stockForm').addEventListener('submit', async function (e) {
