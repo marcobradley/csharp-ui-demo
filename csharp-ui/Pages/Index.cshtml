@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+@Html.AntiForgeryToken()
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
@@ -60,6 +60,7 @@
     });
     document.getElementById('quickSortForm').addEventListener('submit', async function (e) {
         e.preventDefault();
+        const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
         const numbersStr = document.getElementById('numbersInput').value;
         const numbersArr = numbersStr.split(',').map(x => parseInt(x.trim(), 10)).filter(x => !isNaN(x));
         console.log('Quick Sort form submitted. Raw input:', numbersStr);
@@ -83,7 +84,8 @@
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
                 },
                 body: JSON.stringify(payload)
             });
@@ -104,6 +106,7 @@
     });
     document.getElementById('stockForm').addEventListener('submit', async function (e) {
         e.preventDefault();
+        const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
         const pricesStr = document.getElementById('pricesInput').value;
         const pricesArr = pricesStr.split(',').map(x => parseInt(x.trim(), 10)).filter(x => !isNaN(x));
         console.log('Stock form submitted. Raw input:', pricesStr);
@@ -127,7 +130,8 @@
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
                 },
                 body: JSON.stringify(payload)
             });
