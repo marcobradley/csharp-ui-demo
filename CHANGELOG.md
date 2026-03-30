@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.4.0...v0.0.0-development) (2026-03-30)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.4.1...v0.0.0-development) (2026-03-30)
 
 ### ⚠ BREAKING CHANGES
 
@@ -46,4 +46,5 @@
 * updated InputModel ([a90dc17](https://github.com/marcobradley/csharp-ui-demo/commit/a90dc17cd4ee528e58ca190c929ae4935e322fae))
 * updated post and added more logging ([adcb1f5](https://github.com/marcobradley/csharp-ui-demo/commit/adcb1f58a17780f3fa45096617d8bab375fc47d5))
 * updated the call for the get ([97af97b](https://github.com/marcobradley/csharp-ui-demo/commit/97af97b51a2c9443d80a3ee9bdb0ef90a0cff8a8))
+* updated type of post ([ee7378b](https://github.com/marcobradley/csharp-ui-demo/commit/ee7378beaa4be3eb9ca55d3c93fa48f8b9f66092))
 * validation token ([5a822c6](https://github.com/marcobradley/csharp-ui-demo/commit/5a822c68c4d0a69e45afbf60df99493f8b6b042d))
