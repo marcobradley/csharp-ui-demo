@@ -96,7 +96,7 @@
             }
             const data = await response.json();
             console.log('Parsed response data:', data);
-            resultDiv.textContent = 'Sorted numbers: ' + data;
+            resultDiv.textContent = 'Sorted numbers: ' + JSON.stringify(data, null, 2);
             resultDiv.classList.remove('d-none');
         } catch (err) {
             console.error('Error in quickSortForm submit:', err);
@@ -142,7 +142,7 @@
             }
             const data = await response.json();
             console.log('Parsed response data:', data);
-            resultDiv.textContent = 'Best profit: ' + data;
+            resultDiv.textContent = 'Best profit: ' + JSON.stringify(data, null, 2);
             resultDiv.classList.remove('d-none');
         } catch (err) {
             console.error('Error in stockForm submit:', err);
