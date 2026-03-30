@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.4.2...v0.0.0-development) (2026-03-30)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.4.3...v0.0.0-development) (2026-03-30)
 
 ### ⚠ BREAKING CHANGES
 
@@ -25,6 +25,7 @@
 * adding debugging logs ([6177434](https://github.com/marcobradley/csharp-ui-demo/commit/6177434b2b5195b0744778de0501f31e36e05eb9))
 * adding debugging to the catch-all ([0b7eb40](https://github.com/marcobradley/csharp-ui-demo/commit/0b7eb40365b3bc1198cd79918a1a6745e1a249e6))
 * adding more deugging ([f5b6dfe](https://github.com/marcobradley/csharp-ui-demo/commit/f5b6dfe00bea484e0be6798f434b7f7b3747eb0a))
+* adding token ([9a6016d](https://github.com/marcobradley/csharp-ui-demo/commit/9a6016da11019f5f37c4244ef2b4efb361d6062f))
 * cases ([a1e1fa7](https://github.com/marcobradley/csharp-ui-demo/commit/a1e1fa7f17e615f74b0ed97b4fefbc70aa9c2088))
 * change the post object ([6132c24](https://github.com/marcobradley/csharp-ui-demo/commit/6132c2436effd9afcff5499852ca7323426c897e))
 * changed the json format for the data ([a91ef2c](https://github.com/marcobradley/csharp-ui-demo/commit/a91ef2c163c5cabbe7daff10f5db4cfd11195da2))
