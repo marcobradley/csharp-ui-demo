@@ -15,6 +15,9 @@ public class IndexModel : PageModel
     [BindProperty]
     public InputModel Input { get; set; }
 
+    [BindProperty]
+    public InputSortModel SortInput { get; set; }
+
     public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
@@ -70,17 +73,17 @@ public class IndexModel : PageModel
     }
 
     [IgnoreAntiforgeryToken]
-    public async Task<IActionResult> OnPostQuickSortAsync()
+    public async Task<IActionResult> OnPostQuickSortAsync([FromBody] InputSortModel input)
     {
         _logger.LogInformation("Received request for QuickSort handler");
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
         _logger.LogInformation("Handler raw request body: {Body}", body);
 
-        InputModel? request = null;
+        InputSortModel? request = null;
         try
         {
-            request = System.Text.Json.JsonSerializer.Deserialize<InputModel>(body);
+            request = System.Text.Json.JsonSerializer.Deserialize<InputSortModel>(body);
         }
         catch (Exception ex)
         {
@@ -93,19 +96,19 @@ public class IndexModel : PageModel
             _logger.LogWarning("Deserialized request is null");
             return BadRequest("Deserialized request is null");
         }
-        if (request.Prices == null)
+        if (request.Numbers == null)
         {
-            _logger.LogWarning("Prices property is null");
-            return BadRequest("Prices property is null");
+            _logger.LogWarning("Numbers property is null");
+            return BadRequest("Numbers property is null");
         }
-        if (request.Prices.Length < 2)
+        if (request.Numbers.Length < 2)
         {
-            _logger.LogWarning("Prices array has less than 2 elements");
+            _logger.LogWarning("Numbers array has less than 2 elements");
             return BadRequest("Please provide at least two numbers.");
         }
 
         var apiUrl = $"{ApiConfig.ApiBaseUrl}/quicksort";
-        _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Prices);
+        _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Numbers);
         var response = await _httpClient.PostAsJsonAsync(apiUrl, request);
         var result = await response.Content.ReadAsStringAsync();
         _logger.LogInformation("API response status: {StatusCode}, body: {Body}", response.StatusCode, result);
@@ -124,4 +127,9 @@ public class IndexModel : PageModel
 public class InputModel
 {
     public int[] Prices { get; set; }
+}
+
+public class InputSortModel
+{
+    public int[] Numbers { get; set; }
 }
