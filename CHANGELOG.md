@@ -1,4 +1,4 @@
-## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.3.16...v0.0.0-development) (2026-03-30)
+## [0.0.0-development](https://github.com/marcobradley/csharp-ui-demo/compare/v1.4.0...v0.0.0-development) (2026-03-30)
 
 ### ⚠ BREAKING CHANGES
 
@@ -10,6 +10,7 @@
 ### Features
 
 * Adding a dockerfile for the ui container ([daa3fa0](https://github.com/marcobradley/csharp-ui-demo/commit/daa3fa060f02b0cf17f73950b61e882615cce5e4))
+* adding quicksort ([5c23c1b](https://github.com/marcobradley/csharp-ui-demo/commit/5c23c1b96dc47343aabc5748ff3be5fa79e53e02))
 * adding weather forcast ([158a62d](https://github.com/marcobradley/csharp-ui-demo/commit/158a62d805ea3066e90940ee5cc81ebd8f94804b))
 * fixed PR script ([362ea42](https://github.com/marcobradley/csharp-ui-demo/commit/362ea42326773a10ba4a051ccd831324b1507920))
 * fixed release.yaml ([603201e](https://github.com/marcobradley/csharp-ui-demo/commit/603201eeadd91b2fe2de0e41c528f739548a620e))
