@@ -117,5 +117,5 @@ public class InputModel
 
 public class InputSortModel
 {
-    public int[] Numbers { get; set; }
+    public int[] array { get; set; }
 }
