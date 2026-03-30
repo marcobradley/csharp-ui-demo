@@ -12,12 +12,6 @@ public class IndexModel : PageModel
     private readonly HttpClient _httpClient;
     public string ApiBaseUrl { get; set; }
 
-    [BindProperty]
-    public InputModel Input { get; set; }
-
-    [BindProperty]
-    public InputSortModel SortInput { get; set; }
-
     public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
@@ -29,7 +23,6 @@ public class IndexModel : PageModel
         ApiBaseUrl = ApiConfig.ApiBaseUrl;
     }
 
-    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> OnPostBestTimeToBuyOrSellStockAsync()
     {
         _logger.LogInformation("Received request for BestTimeToBuyOrSellStock handler");
@@ -72,8 +65,7 @@ public class IndexModel : PageModel
         return Content(result, "application/json");
     }
 
-    [IgnoreAntiforgeryToken]
-    public async Task<IActionResult> OnPostQuickSortAsync([FromBody] InputSortModel input)
+    public async Task<IActionResult> OnPostQuickSortAsync()
     {
         _logger.LogInformation("Received request for QuickSort handler");
         using var reader = new StreamReader(Request.Body);
