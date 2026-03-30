@@ -29,6 +29,7 @@ public class IndexModel : PageModel
     [IgnoreAntiforgeryToken]
     public async Task<IActionResult> OnPostBestTimeToBuyOrSellStock()
     {
+        _logger.LogInformation("Received request for BestTimeToBuyOrSellStock handler");
         using var reader = new StreamReader(Request.Body);
         var body = await reader.ReadToEndAsync();
         _logger.LogInformation("Handler raw request body: {Body}", body);
