@@ -82,19 +82,19 @@ public class IndexModel : PageModel
             _logger.LogWarning("Deserialized request is null");
             return BadRequest("Deserialized request is null");
         }
-        if (request.Numbers == null)
+        if (request.array == null)
         {
-            _logger.LogWarning("Numbers property is null");
-            return BadRequest("Numbers property is null");
+            _logger.LogWarning("Array property is null");
+            return BadRequest("Array property is null");
         }
-        if (request.Numbers.Length < 2)
+        if (request.array.Length < 2)
         {
-            _logger.LogWarning("Numbers array has less than 2 elements");
+            _logger.LogWarning("Array has less than 2 elements");
             return BadRequest("Please provide at least two numbers.");
         }
 
         var apiUrl = $"{GoApiConfig.ApiBaseUrl}/quicksort";
-        _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.Numbers);
+        _logger.LogInformation("Forwarding to API: {ApiUrl} with payload: {@Payload}", apiUrl, request.array);
         var response = await _httpClient.PostAsJsonAsync(apiUrl, request);
         var result = await response.Content.ReadAsStringAsync();
         _logger.LogInformation("API response status: {StatusCode}, body: {Body}", response.StatusCode, result);
