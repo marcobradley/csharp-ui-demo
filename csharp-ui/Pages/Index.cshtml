@@ -78,7 +78,7 @@
 
         try {
             const url = `?handler=QuickSort`;
-            let payload = { "Numbers": numbersArr };
+            let payload = { "array": numbersArr };
             console.log('Sending POST to handler:', url, 'with payload:', payload);
             const response = await fetch(url, {
                 method: 'POST',
